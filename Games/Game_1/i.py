@@ -1,26 +1,22 @@
-#Questo gioco è dedicato a Vicky pazza SGRAVATA
-
 import pgzrun
-from pgzero.builtins import Actor, animate, keyboard
 import random
-
-penguin = Actor('penguin_walk01')
-
-RED = 150, 0, 0
-GREEN = 0, 128, 0
-bg = RED
-
+ 
 WIDTH = 800
 HEIGHT = 600
-score= 0
-
+penguin_hurt = Actor('penguin_walk01', midbottom=(WIDTH // 2, HEIGHT))
+penguin = Actor('penguin_hurt')
+penguin.topright = 100, 10
+ 
+ 
 def draw():
-    screen.clear()
-    screen.fill(bg)
+    screen.fill('blue')
     penguin.draw()
-
-xpos = random.randint(0, 600)
-
+    penguin_hurt.draw()
+ 
+ 
+xpos = random.randint(0, 800)
+ 
+ 
 def update():
     global xpos
     penguin.y += 5
@@ -28,30 +24,30 @@ def update():
         penguin.x -= 5
     if keyboard.right:
         penguin.x += 5
-    if penguin.y < 600:
-        #print('you win')
-        xpos = random.randint(0, 600)
+    if penguin_hurt.colliderect(penguin):
+        print('you win')
+        penguin.y = 0
+        xpos = random.randint(0, 800)
         penguin.x = xpos
     if penguin.y > 600:
-        #print("you lose")
+        print("you lose")
         penguin. y = 0
-        xpos = random.randint(0, 600)
+        xpos = random.randint(0, 800)
         penguin.x = xpos
-    #penguin.left += 2
-    #if penguin.left > WIDTH:
-        #penguin.right = 0
+ 
+score=0
 
 def on_mouse_down(pos):
     global score
     if penguin.collidepoint(pos):
         set_penguin_hit()
         score += 1
-        print("Eek")
+        print(score)
     else:
         score -= 1
-        print("Nothing here bu")
-    print(score)
-
+        print(score)
+ 
+ 
 def set_penguin_hit():
     penguin.image = 'penguin_hurt'
     #sounds.eep.play()
@@ -60,5 +56,6 @@ def set_penguin_hit():
  
 def set_penguin_normal():
     penguin.image = "penguin_walk01"
-
+ 
+ 
 pgzrun.go()

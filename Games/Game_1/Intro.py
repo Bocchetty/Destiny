@@ -15,7 +15,7 @@ HEIGHT = 600
 
 score= 0
 
-eep= tone.create("E4", 0.5)
+eep= tone.create("C6", 0.5)
 
 def draw():
     screen.clear()

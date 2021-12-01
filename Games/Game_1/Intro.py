@@ -4,7 +4,7 @@ import pgzrun
 from pgzero.builtins import Actor, animate, keyboard
 import random
 
-penguin = Actor('penguin_walk01')
+penguin = Actor('penguin', bottomleft=(0, 600))
 
 RED = 150, 0, 0
 GREEN = 0, 128, 0
@@ -12,34 +12,27 @@ bg = RED
 
 WIDTH = 800
 HEIGHT = 600
+
 score= 0
+
+eep= tone.create("E4", 0.5)
 
 def draw():
     screen.clear()
     screen.fill(bg)
     penguin.draw()
 
-xpos = random.randint(0, 600)
-
 def update():
-    global xpos
-    penguin.y += 5
     if keyboard.left:
-        penguin.x -= 5
-    if keyboard.right:
-        penguin.x += 5
-    if penguin.y < 600:
-        #print('you win')
-        xpos = random.randint(0, 600)
-        penguin.x = xpos
-    if penguin.y > 600:
-        #print("you lose")
-        penguin. y = 0
-        xpos = random.randint(0, 600)
-        penguin.x = xpos
-    #penguin.left += 2
-    #if penguin.left > WIDTH:
-        #penguin.right = 0
+        penguin.x-=1
+        set_penguin_left()
+    elif keyboard.right:
+        penguin.x+=1
+        set_penguin_normal()
+    if keyboard.up:
+        penguin.y-=1
+    elif keyboard.down:
+        penguin.y+=1
 
 def on_mouse_down(pos):
     global score
@@ -54,11 +47,14 @@ def on_mouse_down(pos):
 
 def set_penguin_hit():
     penguin.image = 'penguin_hurt'
+    eep.play()
     #sounds.eep.play()
     clock.schedule_unique(set_penguin_normal, 0.5)
  
- 
 def set_penguin_normal():
-    penguin.image = "penguin_walk01"
+    penguin.image = "penguin"
+    
+def set_penguin_left():
+    penguin.image = "penguin_left"
 
 pgzrun.go()

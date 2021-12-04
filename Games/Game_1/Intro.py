@@ -2,7 +2,6 @@
 
 import pgzrun
 from pgzero.builtins import Actor, animate, keyboard
-import random
 
 penguin = Actor('penguin', bottomleft=(0, 600))
 

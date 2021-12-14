@@ -1,13 +1,14 @@
 #Questo gioco è dedicato a Vicky pazza SGRAVATA
 
 import pgzrun
+import pygame
 from pgzero.builtins import Actor, animate, keyboard
 
-penguin = Actor('penguin', bottomleft=(0, 600))
+penguin = Actor('penguin', bottomleft = (0, 600))
+penguin2= Actor('penguin2', (700, 550))
+rock= Actor('rock', (400, 550))
 
-RED = 150, 0, 0
-GREEN = 0, 128, 0
-bg = RED
+background = pygame.image.load("Games\Game_1\Images\\background.png")
 
 WIDTH = 800
 HEIGHT = 600
@@ -18,8 +19,10 @@ eep= tone.create("C6", 0.5)
 
 def draw():
     screen.clear()
-    screen.fill(bg)
+    screen.blit(background, (0, 0))
     penguin.draw()
+    penguin2.draw()
+    rock.draw()
 
 def update():
     if keyboard.left:
@@ -38,6 +41,7 @@ def on_mouse_down(pos):
     if penguin.collidepoint(pos):
         set_penguin_hit()
         score += 1
+        #draw.text("Eek",[penguin.pos], color= "black")
         print("Eek")
     else:
         score -= 1

@@ -15,7 +15,6 @@ WIDTH = 800
 HEIGHT = 600
 
 penguin.speed = 5
-
 score= 0
 
 eep= tone.create("C6", 0.5)
@@ -38,6 +37,10 @@ def update():
         penguin.y-=1
     elif keyboard.down or keyboard.s:
         penguin.y+=1
+    if penguin.x > 800:
+       penguin.x = 0
+    elif penguin.x < 0:
+       penguin.x = 800
 
 def on_mouse_down(pos):
     global score

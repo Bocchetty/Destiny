@@ -5,7 +5,7 @@ import pygame
 from pgzero.builtins import Actor, animate, keyboard
 from pygame.locals import *
 
-penguin = Actor('penguin', bottomleft = (0, 600))
+penguin = Actor('penguin', bottomleft = (0, 580))
 penguin2 = Actor('penguin2', (700, 550))
 rock = Actor('rock', (400, 550))
 

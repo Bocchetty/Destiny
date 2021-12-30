@@ -41,6 +41,10 @@ def update():
        penguin.x = 0
     elif penguin.x < 0:
        penguin.x = 800
+    if penguin.y > 600:
+       penguin.y = 0
+    elif penguin.y < 0:
+       penguin.y = 600
 
 def on_mouse_down(pos):
     global score

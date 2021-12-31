@@ -9,9 +9,11 @@ from random import randint
 penguin = Actor('penguin', bottomleft = (50, 580))
 penguin2 = Actor('penguin2', (700, 550))
 rock = Actor('rock')
+rock.pos = 400, 550
 
 background = pygame.image.load("Games\Game_1\Images\\background.png")
 
+#Window
 WIDTH = 800
 HEIGHT = 600
 
@@ -30,9 +32,9 @@ def draw():
     rock.draw()
     
     screen.draw.text(eek, topleft = (WIDTH / 2-30, 10), color = "black", fontsize = 22)
-    screen.draw.text("Score: " + str(score), topleft = (10, 10), color = "black", fontsize = 22)
+    screen.draw.text("Score: " + str(score), topleft=(10, 10), color = "black", fontsize = 22)
 
-#penguin.pos
+# pos = penguin.pos
 
 def update():
     
@@ -119,13 +121,20 @@ def set_penguin_left():
     penguin.image = "penguin_left"
 
 def place_rock():
-    rock.x = randint(20, (WIDTH-20))
-    rock.y = randint(20, (WIDTH-20))
-    
-def time_up():
-    global game_over
-    game_over = True
+    rock.x = randint(0, WIDTH)
+    #rock.x = randint(20, (WIDTH-20))
+    #rock.y = randint(20, (WIDTH-20))
+    rock.y = randint(0, WIDTH)
 
-clock.schedule (time_up, 30.0)
+#def heart():
+#    collidirect penguin2
+#    if score >= 100
+#    set_penguin2_heart
+    
+
+#def time_up():
+    #global game_over
+    #game_over = True
+#clock.schedule (time_up, 30.0)
 
 pgzrun.go()

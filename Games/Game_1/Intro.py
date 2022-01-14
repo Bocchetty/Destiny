@@ -10,6 +10,8 @@ penguin = Actor('penguin', bottomleft = (50, 580))
 penguin2 = Actor('penguin2', (700, 550))
 rock = Actor('rock')
 rock.pos = 400, 550
+heart = Actor('heart')
+heart.pos = 700, 550
 
 background = pygame.image.load("Games\Game_1\Images\\background.png")
 
@@ -17,7 +19,7 @@ background = pygame.image.load("Games\Game_1\Images\\background.png")
 WIDTH = 800
 HEIGHT = 600
 
-penguin.speed = 5
+penguin.speed = 10
 score = 0
 game_over = False
 
@@ -28,6 +30,7 @@ def draw():
     screen.clear()
     screen.blit(background, (0, 0))
     penguin.draw()
+    heart.draw()
     penguin2.draw()
     rock.draw()
     
@@ -41,6 +44,13 @@ def update():
     global score
     
     rock_collected = penguin.colliderect(rock)
+    heart_appear = penguin.colliderect(penguin2)
+    
+    if heart_appear:
+        if score >= 100:
+          place_heart()
+        else:
+          pass #aggiungi testo
     
     if rock_collected:
         score = score + 10
@@ -122,15 +132,11 @@ def set_penguin_left():
 
 def place_rock():
     rock.x = randint(0, WIDTH)
-    #rock.x = randint(20, (WIDTH-20))
-    #rock.y = randint(20, (WIDTH-20))
-    rock.y = randint(0, WIDTH)
+    rock.y = randint(0, HEIGHT) 
 
-#def heart():
-#    collidirect penguin2
-#    if score >= 100
-#    set_penguin2_heart
-    
+def place_heart():
+    heart.x = 700
+    heart.y = 505
 
 #def time_up():
     #global game_over

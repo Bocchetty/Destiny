@@ -5,6 +5,7 @@ import pygame
 from pgzero.builtins import Actor, animate, keyboard
 from pygame.locals import *
 from random import randint
+from csv import reader
 
 penguin = Actor('penguin', bottomleft = (50, 580))
 penguin2 = Actor('penguin2', (700, 550))
@@ -24,8 +25,15 @@ score = 0
 
 eep = tone.create("C6", 0.5)
 eek = "Eek"
+regole = "Raccogli 10 sasulin e portali al pinguino"
 
 def draw():
+    
+    global frase
+    
+    rock_collect = penguin.colliderect(rock)
+    heart_appear = penguin.colliderect(penguin2)
+    
     screen.clear()
     screen.blit(background, (0, 0))
     penguin.draw()
@@ -33,10 +41,21 @@ def draw():
     penguin2.draw()
     rock.draw()
     
-    screen.draw.text(eek, topleft = (WIDTH / 2-30, 10), color = "black", fontsize = 22)
-    screen.draw.text("Score: " + str(score), topleft=(10, 10), color = "black", fontsize = 22)
+    screen.draw.text(eek, topleft = (400, 10), color = "black", fontsize = 22)
+    screen.draw.text("Score: " + str(score), topleft = (10, 10), color = "black", fontsize = 22)
+    screen.draw.textbox(regole, (150, 50, 500, 50), color = "black")
+    
+    if heart_appear:
+        if score >= 100:
+            screen.draw.text("Hai vinto <3", center = (400, 200), color = "black", fontsize = 80)
+        else:
+            screen.draw.text("Raccogli più sasulin", center = (400, 200), color = "black", fontsize = 50)
 
-# pos = penguin.pos
+    if rock_collect:
+        frase = lista[randint(0, l1)]
+    else:
+     if score >= 10:
+         screen.draw.textbox(frase, (10, 550, 100, 50), color = "black", align = "left")
 
 def update():
     
@@ -49,7 +68,7 @@ def update():
         if score >= 100:
           place_heart()
         else:
-          pass #aggiungi testo
+            pass
     
     if rock_collected:
         score = score + 10
@@ -136,5 +155,15 @@ def place_rock():
 def place_heart():
     heart.x = 700
     heart.y = 505
+
+#Opens csv file in reading mode
+with open('Games\Game_1\phrases.csv', 'r', encoding="utf8") as csv_file:
+    csv_reader = reader(csv_file)
+    colonne = list(csv_reader)
+    lista = []
+    for i in colonne:
+        lista.append(i[0])
+    l1 = (len(lista)-1)
+    frase = lista[randint(0, l1)]
 
 pgzrun.go()

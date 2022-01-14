@@ -21,7 +21,6 @@ HEIGHT = 600
 
 penguin.speed = 10
 score = 0
-game_over = False
 
 eep = tone.create("C6", 0.5)
 eek = "Eek"
@@ -137,10 +136,5 @@ def place_rock():
 def place_heart():
     heart.x = 700
     heart.y = 505
-
-#def time_up():
-    #global game_over
-    #game_over = True
-#clock.schedule (time_up, 30.0)
 
 pgzrun.go()

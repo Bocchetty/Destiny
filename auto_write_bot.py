@@ -1,7 +1,7 @@
 import pyautogui as pg
 import time
 
-print ("Program in 5 seconds...")
+print ("Starting in 10 seconds...")
 time.sleep (10)
 
 for i in range(100):

@@ -73,17 +73,19 @@ def update():
     if rock_collected:
         score = score + 10
         place_rock()
-    
+      
     if keyboard.left or keyboard.a:
         penguin.x-=1
         set_penguin_walk_left()
     elif keyboard.right or keyboard.d:
         penguin.x+=1
         set_penguin_walk()
+    
     if keyboard.up or keyboard.w:
         penguin.y-=1
     elif keyboard.down or keyboard.s:
         penguin.y+=1
+        
     if penguin.x > 800:
        penguin.x = 0
     elif penguin.x < 0:

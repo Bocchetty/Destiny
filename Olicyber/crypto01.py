@@ -4,6 +4,6 @@ chrs = [chr(i) for i in dati]
 
 risultato = ""
 for c in chrs:
-    risultato +=c
+    risultato += c
 
 print(risultato)

@@ -5,6 +5,7 @@ r = remote ("software-17.challs.olicyber.it", 13000)
 r.recvlines(6)
 r.recvuntil(b" ...")
 r.sendline(b"a")
+
 for i in range (10):
     r.recvline()
     lista = [int(_) for _ in r.recvline(False).decode().strip("[").strip("]").split(", ")]

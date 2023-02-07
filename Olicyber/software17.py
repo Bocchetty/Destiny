@@ -17,4 +17,3 @@ for i in range (10):
     #Devo mandare la somma al server remoto, trasfmormo l'intero in stringa "n" e poi la stringa in byte con .encode
     r.sendline (str(somma).encode())
 print(r.recvline())
-#r.interactive()

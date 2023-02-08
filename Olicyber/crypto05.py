@@ -15,7 +15,7 @@ for i in range(256):
     #Devo filtrare la chiave
     plaintext = xor(key, ciphertext)
 
-#Metto b per trasformare _ in byte
-#Con questo prendo solo le stringhe contenenti _
-if b"_" in plaintext:
-    print(plaintext)
+    #Metto b per trasformare _ in byte
+    #Con questo prendo solo le stringhe contenenti _
+    if b"_" in plaintext:
+        print(plaintext)

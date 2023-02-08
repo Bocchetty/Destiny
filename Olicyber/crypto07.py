@@ -2,7 +2,7 @@ from Crypto.Cipher import DES
 from Crypto.Util.Padding import pad 
 
 #Tutto lavora in bytes
-key = bytes.fromhex("974ac810716390b3")
+key = bytes.fromhex("cda337e94d9a291b")
 
 #Cipher = DES
 #Mode of operation = CBC
@@ -20,11 +20,13 @@ padded = pad(encoded, 8, "x923")
 #len(padded)
 
 #Devo encryptare tutto in esadecimale
-cipher.encrypt(padded).hex()
+encrypt = cipher.encrypt(padded).hex()
 
 cipher.iv
 cipher.iv.hex()
 
-print(cipher.encrypt(padded).hex())
+print(encrypt)
 print()
 print(cipher.iv.hex())
+
+#Parte 2

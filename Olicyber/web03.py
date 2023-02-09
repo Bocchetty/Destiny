@@ -3,7 +3,7 @@ import requests
 #Inserisco l'url
 url = ("http://web-03.challs.olicyber.it/flag")
 
-#Devo fare una richiesta get con un header custom e la reltiva password
+#Devo fare una richiesta get con un header custom e il relativo valore
 #Dict con formato: Nome Header, Valore Header 
 headers = {"X-Password" : "admin"}
 

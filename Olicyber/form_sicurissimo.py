@@ -1,12 +1,21 @@
 
-flage = "fmcj{yo_ackyzb_ihruvcvjam}"
+m = "fmcj{yo_ackyzb_ihruvcvjam}"
 
-m = "mcjyoackyzbihruvcvjam"
+#m = "fmcjyoackyzbihruvcvjam"
 
 def cesare(m):
     mm=""
-    for c in m:
-        mm+=chr(ord(c)-1)
+    array = []
+    for i in range(len(m)):
+        if(m[i] != '{' and m[i] != '}' and m[i] != '_'):
+        
+        
+            array.append(ord(m[i])-i)
+            print((ord(m[i])-ord('a')-i)%22)
+            mm+=chr( ((ord(m[i])-ord('a')-i)%26)+ ord('a') )
+        else:
+            mm += m[i]
+   # print(array)
     return mm
 
 print(cesare(m))

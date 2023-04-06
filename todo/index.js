@@ -25,7 +25,6 @@ let todos = [
  },
 ];
 
-// get è un metodo http
 app.get('/', (req, res) => {
     res.render('index', {
         todos:todos,
@@ -43,6 +42,7 @@ app.post('/mark-done', (req, res) => {
 
 app.post('/clean', (req, res) => {
     todos = todos.filter(todo => todo.done==false)
+    res.redirect('/');
 })
 
 app.post('/add_todo', (req, res) => {

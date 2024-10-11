@@ -5,6 +5,6 @@ print ("Starting in 10 seconds...")
 time.sleep (10)
 
 for i in range(50):
-    pg.write (" Inserisci testo ")
+    pg.write (" Write smth ")
     time.sleep (0.5)
     pg.press ("Enter")

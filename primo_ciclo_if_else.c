@@ -9,12 +9,11 @@ int main(){
     printf("Inserisci un numero intero\n");
     scanf("%d", &a);
 
-    if(a>10)
+    if(a>10){
         printf("Il numero e' maggiore di 10\n");
-    else{
-        if(a<10)
+    }else if (a<10){
             printf("Il numero e' minore di 10\n");
-        else
+        }else{
                 printf("Il numero e' uguale a 10\n");
     };
 

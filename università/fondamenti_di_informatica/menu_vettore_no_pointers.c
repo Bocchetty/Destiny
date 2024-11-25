@@ -49,8 +49,8 @@ int main(){
          break;
 
         case 3:
-         printf("Scrivi il valore da inserire\n");
-         scanf("%d", &valore);
+         printf("Scrivi l'elemento da cancellare\n");
+         scanf("%d", &valore_da_cancellare);
         
 
         case 4:

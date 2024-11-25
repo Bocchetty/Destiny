@@ -6,7 +6,7 @@
 
 void stampa(int v[], int riemp);
 int inserimento(int v[], int riemp, int valore);
-int cancellazione(int v[], int riemp, int valore_da_cancellare);
+int eliminazione(int v[], int riemp, int valore_da_eliminare);
 int ricerca(int v[], int riemp, int valore_da_ricercare);
 
 int main(){
@@ -29,7 +29,7 @@ int main(){
 
     do{
 
-    printf("Quale operazione vuoi effettuare?\n 1. Stampa\n 2. Inserimento\n 3. Cancellazione\n 4 Ricerca\n 0. Esci\n");
+    printf("Quale operazione vuoi effettuare?\n 1. Stampa\n 2. Inserimento\n 3. Eliminazione\n 4 Ricerca\n 0. Esci\n");
     scanf("%d", &scelta);
 
     switch(scelta){
@@ -49,8 +49,8 @@ int main(){
          break;
 
         case 3:
-         printf("Scrivi l'elemento da cancellare\n");
-         scanf("%d", &valore_da_cancellare);
+         printf("Scrivi l'elemento da eliminare\n");
+         scanf("%d", &valore);
         
 
         case 4:
@@ -91,7 +91,7 @@ int inserimento(int v[], int riemp, int valore){
     }
 }
 
-int cancellazione(int v[], int riemp, int valore_da_cancellare){
+int eliminazione(int v[], int riemp, int valore_da_eliminare){
 
 
 }

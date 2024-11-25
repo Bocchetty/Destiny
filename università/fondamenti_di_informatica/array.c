@@ -27,22 +27,28 @@ int main(){
     }
 
     printf("Vettore A : \n");
+    printf("[");
     for (int i = 0; i < MAXDIM; i++){
 
-        printf("%d\n", vettore_A[i]);
+        printf("\t%d\t,", vettore_A[i]);
     }
+    printf("]\n");
 
     printf("Vettore B : \n");
+    printf("[");
     for (int i = 0; i < MAXDIM; i++){
 
-        printf("%d\n", vettore_B[i]);
+        printf("\t%d\t,", vettore_B[i]);
     }
+    printf("]\n");
 
     printf("Vettore C : \n");
+    printf("[");
     for (int i = 0; i < MAXDIM; i++){
 
-        printf("%d\n", vettore_C[i]);
+        printf("\t%d\t,", vettore_C[i]);
     }
+    printf("]\n");
 
     return 0;
 }

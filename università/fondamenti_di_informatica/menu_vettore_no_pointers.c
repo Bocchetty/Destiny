@@ -56,7 +56,7 @@ int main(){
          if (ris != -1)
              riemp = ris; //Aggiorno il riempimento dopo l'eliminazione
          else
-          printf("Elemento da eliminare non trovato!");
+          printf("Indice non valido!");
          break;
         
         case 4:
@@ -107,7 +107,7 @@ int inserimento(int v[], int riemp, int valore){
 
 int eliminazione(int v[], int riemp, int valore){
 
-    if (valore == -1)
+    if (valore < 0 || valore > riemp)
         return -1;
     else{
      riemp--;

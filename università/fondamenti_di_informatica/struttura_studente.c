@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #define MAXLEN 100
 #define n_voti 3
 
@@ -13,6 +14,8 @@ struct studente{
 };
 
 void stampa_studente(struct studente s);
+bool studenti_omonimi(struct studente s1, struct studente s2);
+int media_voti(struct studente s1, struct studente s2);
 
 int main(){
 
@@ -45,6 +48,20 @@ int main(){
     stampa_studente(s1);
     stampa_studente(s2);
 
+    if(studenti_omonimi(s1, s2) == true){
+        printf("I due studenti sono omonimi!\n");
+    }else {
+     printf("I due studenti non sono omonimi!\n");
+    }
+
+    if(media_voti(s1,s2) == -1){
+        printf("%s %s ha la media piu' alta di %s %s\n", s1.nome, s1.cognome, s2.nome, s2.cognome);
+    }else if (media_voti(s1,s2) == +1) {
+        printf("%s %s ha la media piu' alta di %s %s\n", s2.nome, s2.cognome, s1.nome, s1.cognome);
+    }else {
+        printf("%s %s e %s %s hanno la stessa media\n", s1.nome, s1.cognome, s2.nome, s2.cognome);
+    }
+
     return 0;
 }
 
@@ -56,8 +73,37 @@ void stampa_studente(struct studente s){
     printf("ETA' %d\n", s.eta);
     printf("Voti ultimi esami;\n");
     for(int i= 0; i<n_voti; i++){
-        printf("%d\n", s.voti[i]);
+        printf("%d, ", s.voti[i]);
     }
+    printf("\n");
     printf("\n-----\n");
 
+}
+
+bool studenti_omonimi(struct studente s1, struct studente s2){
+    if(strcmp(s1.nome, s2.nome) == 0 && strcmp(s1.cognome, s2.cognome) == 0){
+        return true;
+    }
+
+    return false;
+}
+
+int media_voti(struct studente s1, struct studente s2){
+    int somma_s1 = 0;
+    int somma_s2 = 0;
+
+    for(int i = 0; i<n_voti; i++){
+        somma_s1 += s1.voti[i];
+        somma_s2 += s2.voti[i];
+    }
+    int media_s1 = somma_s1/n_voti;
+    int media_s2 = somma_s2/n_voti;
+
+    if(media_s1 > media_s2){
+        return -1;
+    }else if (media_s1 < media_s2) {
+        return +1;
+    }else {
+     return 0;
+    }
 }

@@ -16,6 +16,7 @@ struct studente{
 void stampa_studente(struct studente s);
 bool studenti_omonimi(struct studente s1, struct studente s2);
 int media_voti(struct studente s1, struct studente s2);
+void flush();
 
 int main(){
 
@@ -23,21 +24,26 @@ int main(){
 
     printf("Inserisci le informazioni del primo studente\n");
     printf("Inserisci nome del primo studente\n");
-    scanf("%s",s1.nome);
+    //scanf("%s",s1.nome);
+    fgets(s1.nome, MAXLEN, stdin);
     printf("Inserisci cognome del primo studente\n");
-    scanf("%s",s1.cognome);
+    //scanf("%s",s1.cognome);
+    fgets(s1.cognome, MAXLEN, stdin);
     printf("Inserisci eta del primo studente\n");
     scanf("%d", &s1.eta);
      for(int i = 0; i<n_voti; i++){
          printf("Inserisci voto esame\n");
          scanf("%d", &s1.voti[i]);
     }
+    flush();
 
     printf("Inserisci le informazioni del secondo studente\n");
     printf("Inserisci nome del secondo studente\n");
-    scanf("%s",s2.nome);
+    //scanf("%s",s2.nome);
+    fgets(s2.nome, MAXLEN, stdin);
     printf("Inserisci cognome del secondo studente\n");
-    scanf("%s",s2.cognome);
+    //scanf("%s",s2.cognome);
+    fgets(s2.cognome, MAXLEN, stdin);
     printf("Inserisci eta del secondo studente\n");
     scanf("%d", &s2.eta);
      for(int i = 0; i<n_voti; i++){
@@ -65,13 +71,19 @@ int main(){
     return 0;
 }
 
+void flush(){
+
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
+}
+
 void stampa_studente(struct studente s){
 
     printf("\n-----\n");
     printf("NOME: %s\n", s.nome);
     printf("COGNOME: %s\n", s.cognome);
     printf("ETA' %d\n", s.eta);
-    printf("Voti ultimi esami;\n");
+    printf("Voti ultimi esami:\n");
     for(int i= 0; i<n_voti; i++){
         printf("%d, ", s.voti[i]);
     }
@@ -96,8 +108,8 @@ int media_voti(struct studente s1, struct studente s2){
         somma_s1 += s1.voti[i];
         somma_s2 += s2.voti[i];
     }
-    int media_s1 = somma_s1/n_voti;
-    int media_s2 = somma_s2/n_voti;
+    float media_s1 = (float)somma_s1/n_voti;
+    float media_s2 = (float)somma_s2/n_voti;
 
     if(media_s1 > media_s2){
         return -1;

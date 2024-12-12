@@ -17,7 +17,7 @@ int main(){
     int riemp = 0; //Riempimento vettore
     int scelta = 0; //Scelta menù interattivo
     int ins = 0; //Numero da inserire
-    int pos = 0; //Posizione numero da ricercare
+    int pos = -1; //Posizione numero da ricercare
     int canc = 0; //Numero da cancellare
     int valore_da_cercare = 0; //Numero da ricercare
 
@@ -65,6 +65,10 @@ int main(){
         printf("Di quale numero vuoi cercare le occorrenze?\n");
         scanf("%d", &valore_da_cercare);
         cont_occ(v, riemp, valore_da_cercare);
+        break;
+
+        case 0:
+        printf("Arrivederci\n");
         break;
 
         default:

@@ -22,6 +22,8 @@ void flush();
 void inserisci_studente(struct studente *studenti, int *riemp);
 void stampa(struct studente *studenti, int riemp, char *nome_cercato, char *cognome_cercato);
 int eta(struct studente *studenti, int riemp, char *nome_cercato, char *cognome_cercato);
+void media_non_lavoratori(struct studente *studenti, int riemp);
+void stampa_inf(struct studente *studenti, int riemp);
 
 int main(){
 
@@ -62,11 +64,11 @@ int main(){
         break;
 
         case 4:
-        
+        media_non_lavoratori(studenti, riemp);
         break;
 
         case 5:
-
+        stampa_inf(studenti, riemp);
         break;
 
         case 0:
@@ -165,6 +167,7 @@ void stampa(struct studente *studenti, int riemp, char *nome_cercato, char *cogn
 int eta(struct studente *studenti, int riemp, char *nome_cercato, char *cognome_cercato){
     
     bool trovato = false; 
+    int eta = 0;
     printf("Inserisci il nome dello studente di cui cerchi l'eta'\n");
     scanf("%s", nome_cercato);
     printf("Inserisci il cognome dello studente di cui cerchi l'eta'\n");
@@ -177,11 +180,51 @@ int eta(struct studente *studenti, int riemp, char *nome_cercato, char *cognome_
         if((strcmp((studenti + i)->nome, nome_cercato) == 0) && (strcmp((studenti + i)->cognome, cognome_cercato) == 0)){
 
             trovato = true;
-            return (studenti + i)->eta;
+            eta = (studenti + i)->eta;
         }
     }
     if(trovato == false){
     printf("Studente non trovato!\n");
     return -1;
+    }else {
+    return eta;
+    }
+}
+
+void media_non_lavoratori(struct studente *studenti, int riemp){
+
+    bool lav = false;
+    printf("Media studenti non lavoratori:\n");
+    for(int i = 0; i < riemp; i++){
+        if((studenti + i)->lavoratore == 0){
+            lav = true;
+            printf("Media di %s %s e' %0.2f\n", (studenti + i)->nome, (studenti + i)->cognome, (studenti + i)->media);
+        }
+    }
+    if(lav == false){
+        printf("Non sono presenti studenti non lavoratori\n");
+    }
+}
+
+void stampa_inf(struct studente *studenti, int riemp){
+
+    bool trov = false;
+    for(int i = 0; i < riemp; i++){
+        if((studenti + i)->eta < 25){
+            trov = true;
+            printf("Info studente:\n");
+            printf("%s\n", (studenti + i)->nome);
+            printf("%s\n", (studenti + i)->cognome);
+            printf("%d\n", (studenti + i)->eta);
+            printf("%0.2f\n", (studenti + i)->media);
+            if((studenti + i)->lavoratore == 1){
+                printf ("Lavoratore\n");
+            }else {
+                printf("Non lavoratore\n");
+            }
+        }
+    }
+    if(trov == false){
+        printf("Non sono presenti studenti con eta' inferiore a 25 anni\n");
     }
 }

@@ -33,7 +33,6 @@ int main(){
     }
 
     do {
-    
      printf("Menu' interattivo\n");
      printf("1. Inserimento di un elemento in una determinata posizione\n");
      printf("2. Stampa elementi\n");

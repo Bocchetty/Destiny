@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
-#define MAXLEN 50
+#define MAXLEN 30
 #define MAXDIM 100
 
 struct studente{
@@ -15,15 +15,14 @@ struct studente{
 
 struct studente studenti[100];
 
-void flush();
-void remove_n(struct studente *studenti, int riemp);
 void inserimento(struct studente *studenti, int *riemp);
 void stampa(struct studente *studenti, int riemp);
-void scambia(struct studente *a, struct studente *b);
+void scambia_struct(struct studente *a, struct studente *b);
 int minimo_char(struct studente *studenti, int inizio, int fine);
 void selection_sort(struct studente *studenti, int riemp);
-void insertion_sort();
-void selection_sort_indici();
+void insertion_sort(struct studente *studenti, int riemp);
+void selection_sort_indici(struct studente *studenti, int riemp);
+void scambia(int *a, int *b);
 
 int main(){
 
@@ -38,7 +37,7 @@ int main(){
 
      printf("Vuoi inserire un'altro studente? (1.Si/0.No)\n");
      scanf("%d", &terminati);
-     flush();
+     getchar();
      if(terminati == 0){
         inserimenti_terminati = true;
      }
@@ -52,7 +51,7 @@ int main(){
     printf("2. Insertion sort\n");
     printf("3. Selection sort su indici\n");
     scanf("%d", &scelta);
-    flush();
+    getchar();
 
     switch (scelta){
 
@@ -63,6 +62,7 @@ int main(){
 
         case 2:
         printf("Ordinamento per cognome utilizzando insertion sort\n");
+        insertion_sort(studenti, riemp);
         break;
 
         case 3:
@@ -79,31 +79,21 @@ int main(){
     return 0;
 }
 
-void flush(){
-    int c;
-    while((c = getchar()) != '\n' && c != EOF);
-}
-
-void remove_n(struct studente *studenti, int riemp){
-
-    (studenti + riemp)->nome[strcspn((studenti + riemp) -> nome, "\n")] = '\0';
-    (studenti + riemp)->cognome[strcspn((studenti + riemp) -> cognome, "\n")] = '\0';
-}
-
 void inserimento(struct studente *studenti, int *riemp){
 
     if(*riemp + 1 < MAXDIM){
      printf("Inserisci Nome:\n");
      fgets((studenti + *riemp) -> nome, MAXLEN, stdin);
+     (studenti + *riemp)->nome[strcspn((studenti + *riemp) -> nome, "\n")] = '\0';
      printf("Inserisci Cognome:\n");
      fgets((studenti + *riemp) -> cognome, MAXLEN, stdin);
+     (studenti + *riemp)->cognome[strcspn((studenti + *riemp) -> cognome, "\n")] = '\0';
 
      printf("Inserisci Eta':\n");
      scanf("%d", &(studenti + *riemp) -> eta);
 
-     flush();
+     getchar();
      (*riemp)++;
-     remove_n(studenti, *riemp);
      printf("Studente aggiunto!\n");
     }else{
      printf("Inserimento fallito dimensione massima raggiunta!\n");
@@ -122,9 +112,8 @@ void stampa(struct studente *studenti, int riemp){
     }
 }
 
-void scambia(struct studente *a, struct studente *b){
+void scambia_struct(struct studente *a, struct studente *b){
 
-//scambia campo a campo
     struct studente  tmp = *a;
     *a = *b;
     *b = tmp;
@@ -136,25 +125,69 @@ int minimo_char(struct studente *studenti, int inizio, int fine){
     int indice_min = -1;
 
     for(int i = inizio; i < fine; i++){
-        /*
-        if(*(studenti + i)->cognome < min || i == inizio){
-            min = *(studenti + i)->cognome;
-            indice_min = i;
-        }
-        */
 
         if(strcmp((studenti + i)->cognome, &min)<0 || i == inizio){
             min = *(studenti + i)->cognome;
             indice_min = i;
         }
     }
-    return indice_min;
+
+    if(indice_min != -1){
+
+     return indice_min;
+    }else{
+        printf("Studente non trovato!\n");
+        return -1;
+    }
 }
 
 void selection_sort(struct studente *studenti, int riemp){
 
     for(int i = 0; i < riemp-1; i++){
         int indice_min = minimo_char(studenti, i, riemp-1);
-        scambia((studenti + i), (studenti + indice_min));
+        if(indice_min == -1){
+            return;
+        }else{
+        scambia_struct((studenti + i), (studenti + indice_min));
+        }
     }
 }
+
+void insertion_sort(struct studente *studenti, int riemp){
+
+    for(int i = 1; i < riemp; i++){
+        int j = i;
+        while(strcmp((studenti + j)->cognome, (studenti + j - 1)->cognome) < 0 && j > 0){
+            scambia_struct(studenti + j, studenti + j - 1);
+            j--;
+        }
+    }
+}
+
+void scambia(int *a, int *b){
+
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+// todo
+/*
+void selection_sort_indici(struct studente *studenti, int riemp){
+
+    int indici[MAXDIM];
+    for (int i = 0; i < riemp; i ++){
+        indici[i] = i;
+    }
+
+    for(int i = 0; i < riemp-1; i++){
+        int ind_min = i;
+        for(int j = i + i; j < riemp; j++){
+        if(strcmp(studenti[indici])+ j, (studenti(indici))+ ind_min <0){
+
+        }
+        }
+    }
+
+}
+*/

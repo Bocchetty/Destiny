@@ -21,8 +21,9 @@ void scambia_struct(struct studente *a, struct studente *b);
 int minimo_char(struct studente *studenti, int inizio, int fine);
 void selection_sort(struct studente *studenti, int riemp);
 void insertion_sort(struct studente *studenti, int riemp);
-void selection_sort_indici(struct studente *studenti, int riemp);
-void scambia(int *a, int *b);
+void selection_sort_indici(struct studente *studenti, int riemp, int indici[]);
+void scambia_indici(int a, int b, int indici[]);
+void stampa_indici(struct studente *studenti, int riemp, int indici[]);
 
 int main(){
 
@@ -67,6 +68,9 @@ int main(){
 
         case 3:
         printf("Ordinamento per cognome utilizzando selection sort su indici\n");
+        int indici[MAXDIM];
+        selection_sort_indici(studenti, riemp, indici);
+        stampa_indici(studenti, riemp, indici);
         break;
 
         default:
@@ -163,30 +167,38 @@ void insertion_sort(struct studente *studenti, int riemp){
     }
 }
 
-void scambia(int *a, int *b){
+void scambia_indici(int a, int b, int indici[]){
 
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
+    int tmp = *(indici) + a;
+    *(indici + a) = *(indici + b);
+    *(indici + b) = tmp;
 }
 
-// todo
-/*
-void selection_sort_indici(struct studente *studenti, int riemp){
 
-    int indici[MAXDIM];
+void selection_sort_indici(struct studente *studenti, int riemp, int indici[]){
+
     for (int i = 0; i < riemp; i ++){
         indici[i] = i;
     }
 
     for(int i = 0; i < riemp-1; i++){
-        int ind_min = i;
-        for(int j = i + i; j < riemp; j++){
-        if(strcmp(studenti[indici])+ j, (studenti(indici))+ ind_min <0){
-
-        }
+        int indice_min = minimo_char(studenti, i, riemp-1);
+        if(indice_min == -1){
+            return;
+        }else{
+        scambia_indici(indice_min, i, indici);
         }
     }
 
 }
-*/
+
+void stampa_indici(struct studente *studenti, int riemp, int indici[]){
+    printf("Info studenti:\n");
+    int n = 1;
+
+    for(int i = 0; i < riemp; i++){
+
+        printf("%d) %s %s - %d anni\n", n, ((studenti + indici[i]))->cognome, ((studenti + indici[i]))->nome, ((studenti + indici[i]))->eta);
+        n++;
+    }
+}

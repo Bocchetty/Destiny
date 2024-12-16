@@ -133,7 +133,6 @@ int minimo_char(struct studente *studenti, int inizio, int fine){
     }
 
     if(indice_min != -1){
-
      return indice_min;
     }else{
         printf("Studente non trovato!\n");

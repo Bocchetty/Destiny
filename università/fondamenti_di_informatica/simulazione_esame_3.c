@@ -28,7 +28,7 @@ int main(){
     getchar();
     
     struct libro* libri = malloc(sizeof(struct libro)*dim);
-    
+
     if(libri == NULL){
         printf("Memoria non allocata!");
         return 0;

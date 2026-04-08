@@ -1,0 +1,8 @@
+Comandi per la compilazione separata
+
+test
+
+gcc -c magazzino.c
+gcc -c main.c
+
+gcc main.o magazzino.o -o

@@ -17,7 +17,7 @@ struct prodotto{
 void flush();
 void remove_n(struct prodotto *prodotti, int riemp);
 void inserisci_datiprodotto(struct prodotto *prodotti, int *riemp);
-void modifica_codice();
+void modifica_codice(struct prodotto *prodotti, int *riemp);
 void fornisci_codice();
 void visualizza_datiprodotto();
 void inizializza_magazzino_vuoto();

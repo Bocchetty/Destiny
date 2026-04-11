@@ -48,3 +48,23 @@ void inserisci_datiprodotto(struct prodotto *prodotti, int *riemp){
 
     
 }
+
+void modifica_codice(struct prodotto *prodotti, int *riemp){
+
+    int pos = 0;
+
+    printf("A quale prodotto vuoi modificare il codice? \n");
+    scanf("%d", &pos);
+    flush();
+
+    if(pos < *riemp || !0){
+        printf("Inserisci il nuovo codice: \n");
+        fgets((prodotti + pos) -> codice, MAXLEN, stdin);
+        //fgets(prodotti[pos].codice, MAXLEN, stdin);
+    
+        remove_n(prodotti, pos);
+    }else{
+        printf("Posizione non valida!");
+    }
+
+}

@@ -1,8 +1,13 @@
 Comandi per la compilazione separata
 
-test
+//Nel terminale, nella directory della cartella contenente i file
 
+//Compilazione dei singoli file in file oggetto
 gcc -c magazzino.c
 gcc -c main.c
 
-gcc main.o magazzino.o -o
+//Assemblaggio dei file sorgente nell'unico file programma di output
+gcc main.o magazzino.o -o programma
+
+//Per runnare (su mac)
+./programma

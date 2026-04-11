@@ -45,7 +45,7 @@ int main(){
             break;
 
             case 4:
-
+            modifica_codice(*prodotti, &riemp);
             break;
 
             case 5:

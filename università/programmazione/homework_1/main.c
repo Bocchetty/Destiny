@@ -6,6 +6,7 @@ int main(){
     int magazzino[MAXDIM];
     int riemp;
     struct prodotto *prodotti[MAXDIM];
+    char new_cod[MAXLEN];
 
     //menù contestuale
 
@@ -33,43 +34,46 @@ int main(){
         switch(scelta){
 
             case 1:
-
+            inizializza_magazzino_vuoto(*prodotti, &riemp);
             break;
 
             case 2:
-
+            inizializza_magazzino(*prodotti, &riemp, new_cod);
             break;
 
             case 3:
-            inserisci_datiprodotto(*prodotti, &riemp);
+            inserisci_datiprodotto(*prodotti, &riemp, new_cod);
             break;
 
             case 4:
             modifica_codice(*prodotti, &riemp);
             break;
-
+            
             case 5:
-
+            fornisci_codice(*prodotti, &riemp);
             break;
 
             case 6:
-
+            visualizza_datiprodotto(*prodotti, &riemp);
             break;
 
             case 7:
-
+            printf("Inserisci il codice del prodotto che cerchi: \n");
+            fgets(new_cod, MAXLEN, stdin);
+            flush();
+            cerca_codice_prodotto(*prodotti, &riemp, new_cod);
             break;
 
             case 8:
-
+            elimina_prodotto(*prodotti, &riemp);
             break;
 
             case 9:
-
+            inserisci_prodotto(*prodotti, &riemp, new_cod);
             break;
 
             case 10:
-
+            visualizza_magazzino(*prodotti, &riemp);
             break;
 
             case 0:

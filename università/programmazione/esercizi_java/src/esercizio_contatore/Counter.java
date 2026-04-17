@@ -1,4 +1,4 @@
-package università.programmazione.esercizio_contatore;
+package università.programmazione.esercizi_java.src.esercizio_contatore;
 
 public class Counter {
 
